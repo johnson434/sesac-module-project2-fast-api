@@ -1,9 +1,24 @@
 from fastapi import FastAPI, APIRouter, HTTPException
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-@app.get("/")
+origins = [
+    "http://test.com",
+    "http://test.com:3000",
+    "http://localhost",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+@app.get("/api")
 async def root():
     return {"message": "Hello World"}
 
