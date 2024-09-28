@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/calculator")
+@app.get("/api/calculator")
 async def get_multiplication_table(number: int = Query(..., description="구구단을 위한 숫자를 입력하세요")):
     result = [f"{number} x {i} = {number * i}" for i in range(1, 10)]
     
